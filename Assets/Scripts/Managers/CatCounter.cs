@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CatCounter : Singleton<CatCounter>
 {
+    public delegate void CatChange();
+    public event CatChange OnCatChange;
     public int CatAmount { get; private set; }
 
     protected override void Awake()
@@ -16,16 +18,32 @@ public class CatCounter : Singleton<CatCounter>
         CatAmount = 0;
     }
 
+    void Update()
+    {
+        DebugginCats();
+    }
+
     void DebugginCats()
     {
         if (Input.GetKeyDown("c"))
         {
             ChangeCatAmount(1);
+            CatSpawner instance = FindAnyObjectByType<CatSpawner>();
+            if (instance != null)
+            {
+                instance.InstantiateCat();
+            }
+
         }
-        if (Input.GetKeyDown("d"))
+        else if (Input.GetKeyDown("d"))
         {
             ChangeCatAmount(-1);
-            Destroy(FindAnyObjectByType<Cat>().gameObject);
+            Cat instance = FindAnyObjectByType<Cat>();
+            if (instance != null)
+            {
+                Destroy(instance.gameObject);
+            }
+            instance = null;
         }
     }
 
@@ -37,5 +55,6 @@ public class CatCounter : Singleton<CatCounter>
             CatAmount = 0;
             value = 0;
         }
+        OnCatChange();
     }
 }
