@@ -29,9 +29,24 @@ public class SliderController : MonoBehaviour
                 index = 2;
                 break;
         }
+        UpdateSlider();
+        StartCoroutine(DecreaseValueRoutine());
+    }
+
+    void OnEnable()
+    {
+        sliderGroup.OnAtributesChange += UpdateSlider;
+    }
+
+    void OnDisable()
+    {
+        sliderGroup.OnAtributesChange += UpdateSlider;
+    }
+
+    void UpdateSlider()
+    {
         mySlider.maxValue = sliderGroup.maxValue[index];
         mySlider.value = sliderGroup.currentValue[index];
-        StartCoroutine(DecreaseValueRoutine());
     }
 
     IEnumerator DecreaseValueRoutine()
@@ -39,8 +54,11 @@ public class SliderController : MonoBehaviour
         yield return new WaitForSecondsRealtime(sliderGroup.decreaseSpeed[index]);
         while(true)
         {
-            mySlider.value -= sliderGroup.decreaseAmount[index];
-            sliderGroup.currentValue[index] -= sliderGroup.decreaseAmount[index];
+            if (mySlider.value > 0)
+            {
+                mySlider.value -= sliderGroup.decreaseAmount[index];
+                sliderGroup.currentValue[index] -= sliderGroup.decreaseAmount[index];
+            }
             yield return new WaitForSecondsRealtime(sliderGroup.decreaseSpeed[index]);
         }
     }

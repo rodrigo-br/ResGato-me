@@ -13,16 +13,19 @@ MonoBehaviour:
   m_Name: "Ra\xE7\xE3o"
   m_EditorClassIdentifier: 
   itemName: "Ra\xE7\xE3o"
-  itemDescription: "Ra\xE7\xE3o simples e barata da esquina que nem seu cachorro
-    quer comer"
+  itemDescription: "Recupera 10 da barra de ra\xE7\xE3o"
   itemValue: 50
-  alteraComidaFixo: 10
+  alteraAgua: 0
+  alteraComida: 1
+  alteraComidaFixo: 0
   alteraAguaFixo: 0
+  alteraVelocidadeBarraComidaSegundos: 0
+  alteraVelocidadeBarraAguaSegundos: 0
+  alteraConsumoComidaFixo: 10
+  alteraConsumoAguaFixo: 0
   alteraComidaPorcentagem: 0
   alteraAguaPorcentagem: 0
-  alteraVelocidadeBarraSegundos: 0
-  alteraVelocidadeBarraPorcentagem: 0
-  alteraConsumoComidaFixo: 0
+  alteraVelocidadeBarraComidaPorcentagem: 0
+  alteraVelocidadeBarraAguaPorcentagem: 0
   alteraConsumoComidaPorcentagem: 0
-  alteraConsumoAguaFixo: 0
   alteraConsumoAguaPorcentagem: 0

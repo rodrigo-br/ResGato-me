@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MoneyCounter : Singleton<MoneyCounter>
 {
+    public delegate void MoneyChange();
+    public event MoneyChange OnMoneyChange;
     [SerializeField] int currentSalary = 50;
     public int MoneyAmount { get; private set; }
 
@@ -17,9 +19,10 @@ public class MoneyCounter : Singleton<MoneyCounter>
         MoneyAmount = 0;
     }
 
-    void ChangeMoneyAmount(int value)
+    public void ChangeMoneyAmount(int value)
     {
         MoneyAmount += value;
+        OnMoneyChange();
     }
 
     public void Work()

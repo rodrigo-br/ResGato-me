@@ -5,6 +5,7 @@ using UnityEngine;
 public class CatSpawner : MonoBehaviour
 {
     [SerializeField] GameObject cat;
+    [SerializeField] SliderGroup mySliderGroup;
     RectTransform rectTransform;
 
     void Awake()
@@ -20,5 +21,9 @@ public class CatSpawner : MonoBehaviour
         instanceRectTransform.SetParent(this.transform);
         Quaternion rotation = Random.Range(0, 1f) >= 0.5 ? Quaternion.Euler(0, -180, 0) : Quaternion.identity;
         instanceRectTransform.SetLocalPositionAndRotation(position, rotation);
+        for (int i = 0; i < mySliderGroup.decreaseAmount.Length; i++)
+        {
+            mySliderGroup.decreaseAmount[i]++;
+        }
     }
 }

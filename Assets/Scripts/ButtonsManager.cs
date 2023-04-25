@@ -6,12 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class ButtonsManager : MonoBehaviour
 {
-    public delegate void MoneyChange();
-    public event MoneyChange OnMoneyChange;
-
     [SerializeField] Button workButton;
     [SerializeField] Button storeButton;
     [SerializeField] Button otherButton;
+    [SerializeField] Canvas leaderBoardCanvas;
     MoneyCounter moneyCounter;
 
     void Awake()
@@ -27,31 +25,36 @@ public class ButtonsManager : MonoBehaviour
         }
         if (otherButton)
         {
-            otherButton.onClick.AddListener(OtherBehavior);
+            otherButton.onClick.AddListener(ShowLeaderBoard);
         }
     }
 
     void WorkButton()
     {
         moneyCounter.Work();
-        OnMoneyChange();
     }
 
     void EnterStore()
     {
-        if (SceneManager.GetActiveScene().name != "StoreScene")
+        string activeScene = SceneManager.GetActiveScene().name;
+        if (activeScene == "MainScene")
         {
             SceneManager.LoadScene("StoreScene");
             FindObjectOfType<CatSpawner>().gameObject.SetActive(false);
         }
-    }
-
-    void OtherBehavior()
-    {
-        if (SceneManager.GetActiveScene().name != "MainScene")
+        else if (activeScene == "StoreScene")
         {
             SceneManager.LoadScene("MainScene");
             FindObjectOfType<CatSpawner>(true).gameObject.SetActive(true);
+        }
+    }
+
+    void ShowLeaderBoard()
+    {
+        if (leaderBoardCanvas)
+        {
+            leaderBoardCanvas.enabled = !leaderBoardCanvas.enabled;
+            FindObjectOfType<PlayFabManager>()?.GetLeaderBoard();
         }
     }
 }

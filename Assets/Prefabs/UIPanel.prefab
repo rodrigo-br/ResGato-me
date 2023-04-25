@@ -225,8 +225,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: $999999999
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3eddd0bbecd337d44883013b5d6a0412, type: 2}
+  m_sharedMaterial: {fileID: -2076301539726002832, guid: 3eddd0bbecd337d44883013b5d6a0412, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -250,7 +250,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25.95
+  m_fontSize: 50.6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -374,8 +374,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 999999
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3eddd0bbecd337d44883013b5d6a0412, type: 2}
+  m_sharedMaterial: {fileID: -2076301539726002832, guid: 3eddd0bbecd337d44883013b5d6a0412, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -399,7 +399,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20.75
+  m_fontSize: 39.95
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -531,7 +531,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1732144929540086885, guid: 0ffeb427af741584cafc575ff64b6742, type: 3}
       propertyPath: m_fontSize
-      value: 42.75
+      value: 72
       objectReference: {fileID: 0}
     - target: {fileID: 1732144929540086885, guid: 0ffeb427af741584cafc575ff64b6742, type: 3}
       propertyPath: m_enableAutoSizing
@@ -645,7 +645,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1732144929540086885, guid: 0ffeb427af741584cafc575ff64b6742, type: 3}
       propertyPath: m_fontSize
-      value: 42.75
+      value: 72
       objectReference: {fileID: 0}
     - target: {fileID: 1732144929540086885, guid: 0ffeb427af741584cafc575ff64b6742, type: 3}
       propertyPath: m_enableAutoSizing

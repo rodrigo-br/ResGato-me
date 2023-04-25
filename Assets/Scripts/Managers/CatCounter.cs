@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CatCounter : Singleton<CatCounter>
 {
@@ -25,7 +26,7 @@ public class CatCounter : Singleton<CatCounter>
 
     void DebugginCats()
     {
-        if (Input.GetKeyDown("c"))
+        if (Input.GetKeyDown("4"))
         {
             ChangeCatAmount(1);
             CatSpawner instance = FindAnyObjectByType<CatSpawner>();
@@ -33,9 +34,8 @@ public class CatCounter : Singleton<CatCounter>
             {
                 instance.InstantiateCat();
             }
-
         }
-        else if (Input.GetKeyDown("d"))
+        else if (Input.GetKeyDown("5"))
         {
             ChangeCatAmount(-1);
             Cat instance = FindAnyObjectByType<Cat>();
@@ -56,5 +56,6 @@ public class CatCounter : Singleton<CatCounter>
             value = 0;
         }
         OnCatChange();
+        FindObjectOfType<PlayFabManager>()?.SendLeaderBoard(CatAmount);
     }
 }

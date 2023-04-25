@@ -22,12 +22,12 @@ public class MoneyText : MonoBehaviour
 
     void OnEnable()
     {
-        buttons.OnMoneyChange += MoneyChangeListener;
+        moneyCounter.OnMoneyChange += MoneyChangeListener;
     }
 
     void OnDisable()
     {
-        buttons.OnMoneyChange += MoneyChangeListener;
+        moneyCounter.OnMoneyChange += MoneyChangeListener;
     }
 
     void MoneyChangeListener()
