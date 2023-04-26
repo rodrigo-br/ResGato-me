@@ -12,6 +12,8 @@ public class NewButtonsManager : MonoBehaviour
     [SerializeField] Button noAdsButton;
     [SerializeField] Button clickButton;
     [SerializeField] PlayerStatus myPlayerStatus;
+    [SerializeField] Button[] upgradeButton;
+    [SerializeField] Canvas[] popUpCanvas;
 
     void Awake()
     {
@@ -21,21 +23,48 @@ public class NewButtonsManager : MonoBehaviour
         achivButton.onClick.AddListener(OnAchievButtonClick);
         noAdsButton.onClick.AddListener(OnNoAdsButtonClick);
         clickButton.onClick.AddListener(OnClickButtonClick);
+        foreach (Button btn in upgradeButton)
+        {
+            btn.onClick.AddListener(() => OnUpgradeButtonClick(btn));
+        }
     }
 
-    void OnSettingsButtonClick() => Debug.Log("SettingsButtonClick");
+    void OnSettingsButtonClick() => SelectCanvas("Settings");
 
-    void OnStoreButtonClick() => Debug.Log("StoreButtonClick");
+    void OnStoreButtonClick() => SelectCanvas("Store");
 
-    void OnAdoptButtonClick() => Debug.Log("AdoptButtonClick");
+    void OnAdoptButtonClick() => SelectCanvas("Adopt");
 
-    void OnAchievButtonClick() => Debug.Log("AchievButtonClick");
+    void OnAchievButtonClick() => SelectCanvas("Achiev");
 
-    void OnNoAdsButtonClick() => Debug.Log("NoAdsButtonClick");
+    void OnNoAdsButtonClick() => SelectCanvas("NoAds");
 
-    void OnClickButtonClick()
+    void SelectCanvas(string canvasTag)
     {
-        myPlayerStatus.EarnCoinOnClick();
-        Debug.Log("ClickButtonClick");
+        foreach (Canvas canvas in popUpCanvas)
+        {
+            if (canvas.CompareTag(canvasTag))
+            {
+                canvas.gameObject.SetActive(!canvas.gameObject.activeSelf);
+            }
+            else
+            {
+                canvas.gameObject.SetActive(false);
+            }
+        }
+    }
+
+    void OnClickButtonClick() => myPlayerStatus.EarnCoinOnClick();
+
+    void OnUpgradeButtonClick(Button self)
+    {
+        ClickUpdates myClickUpdates = self.GetComponent<ClickUpdates>();
+        if (myPlayerStatus.GetCoinAmount() >= myClickUpdates.UpgradeCost())
+        {
+            myPlayerStatus.BuySomething(myClickUpdates.UpgradeCost());
+            myClickUpdates.LevelUp();
+            myPlayerStatus.PowerEarnings(myClickUpdates.GetEarnPower());
+        }
+        myClickUpdates.UpdateValueText();
     }
 }

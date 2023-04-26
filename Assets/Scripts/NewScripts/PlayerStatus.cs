@@ -1,39 +1,48 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+using UnityEngine.Events;
 using BreakInfinity;
 
 public class PlayerStatus : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI coinAmountText;
-    [SerializeField] TextMeshProUGUI catAmountText;
+    [HideInInspector] public UnityEvent<BigDouble> OnCatChangeEvent;
+    [HideInInspector] public UnityEvent<BigDouble> OnCoinChangeEvent;
     BigDouble catAmount = 0;
     BigDouble coinAmount = 0;
     BigDouble earnCoinAmount = 1;
 
     void Start()
     {
-        UpdateCountersText();
-    }
-
-    void UpdateCountersText()
-    {
-        coinAmountText.text = coinAmount.ToString();
-        catAmountText.text = catAmount.ToString();
+        if (OnCatChangeEvent == null)
+        {
+            OnCatChangeEvent = new UnityEvent<BigDouble>();
+        }
+        if (OnCoinChangeEvent == null)
+        {
+            OnCoinChangeEvent = new UnityEvent<BigDouble>();
+        }
+        OnCatChangeEvent.Invoke(catAmount);
+        OnCoinChangeEvent.Invoke(coinAmount);
     }
 
     void ChangeCatAmount(BigDouble value)
     {
         catAmount += value;
-        UpdateCountersText();
+        OnCatChangeEvent.Invoke(catAmount);
     }
 
     void ChangeCoinAmount(BigDouble value)
     {
         coinAmount += value;
-        UpdateCountersText();
+        OnCoinChangeEvent.Invoke(coinAmount);
     }
 
+    public void PowerEarnings(BigDouble value) => earnCoinAmount += value;
+
+    public void BuySomething(BigDouble value) => ChangeCoinAmount(-value);
+
     public void EarnCoinOnClick() => ChangeCoinAmount(earnCoinAmount);
+
+    public BigDouble GetCoinAmount() => coinAmount;
 }

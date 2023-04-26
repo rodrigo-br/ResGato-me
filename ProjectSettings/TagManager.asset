@@ -6,6 +6,11 @@ TagManager:
   tags:
   - Food
   - Water
+  - Store
+  - Adopt
+  - Achiev
+  - NoAds
+  - Settings
   layers:
   - Default
   - TransparentFX
