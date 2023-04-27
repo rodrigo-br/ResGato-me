@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ddf893893659da45af5c3eeb6dc3a1a, type: 3}
   m_Name: ClickUpgrade 8
   m_EditorClassIdentifier: 
+  id: 7
   baseCostMultiplier: 4
   baseCost: 80
   earnPower: 20

@@ -6,7 +6,8 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "newUpgradeItem", menuName = "Upgrade Item SO")]
 public class UpgradeItem : ScriptableObject
 {
-    public string baseCostMultiplier;
-    public string baseCost;
-    public string earnPower;
+    public int      id;
+    public string   baseCostMultiplier;
+    public string   baseCost;
+    public string   earnPower;
 }

@@ -12,7 +12,6 @@ public class NewButtonsManager : MonoBehaviour
     [SerializeField] Button noAdsButton;
     [SerializeField] Button clickButton;
     [SerializeField] PlayerStatus myPlayerStatus;
-    [SerializeField] Button[] upgradeButton;
     [SerializeField] Canvas[] popUpCanvas;
 
     void Awake()
@@ -23,10 +22,6 @@ public class NewButtonsManager : MonoBehaviour
         achivButton.onClick.AddListener(OnAchievButtonClick);
         noAdsButton.onClick.AddListener(OnNoAdsButtonClick);
         clickButton.onClick.AddListener(OnClickButtonClick);
-        foreach (Button btn in upgradeButton)
-        {
-            btn.onClick.AddListener(() => OnUpgradeButtonClick(btn));
-        }
     }
 
     void OnSettingsButtonClick() => SelectCanvas("Settings");
@@ -55,6 +50,11 @@ public class NewButtonsManager : MonoBehaviour
     }
 
     void OnClickButtonClick() => myPlayerStatus.EarnCoinOnClick();
+
+    public void SetUpgradeButtonClick(Button button)
+    {
+        button.onClick.AddListener(() => OnUpgradeButtonClick(button));
+    }
 
     void OnUpgradeButtonClick(Button self)
     {

@@ -9,20 +9,11 @@ public class ClickUpdates : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI costText;
     [SerializeField] TMP_Text powerText;
-    [SerializeField] UpgradeItem upgradeItem;
+    UpgradeItem upgradeItem;
     BigDouble   upgradeBaseCost;
     BigDouble   upgradeCostMultiplier;
     BigDouble   earnPower;
     BigDouble   level;
-
-    void Start()
-    {
-        upgradeBaseCost = BigDouble.Parse(upgradeItem.baseCost);
-        upgradeCostMultiplier = BigDouble.Parse(upgradeItem.baseCostMultiplier);
-        earnPower = BigDouble.Parse(upgradeItem.earnPower);
-        level = 1;
-        UpdateValueText();
-    }
 
     public void UpdateValueText()
     {
@@ -37,5 +28,15 @@ public class ClickUpdates : MonoBehaviour
     public BigDouble UpgradeCost()
     {
         return (upgradeBaseCost * BigDouble.Pow(upgradeCostMultiplier, level));
+    }
+
+    public void SetUpgradeItem(UpgradeItem newUpgradeItem)
+    {
+        upgradeItem = newUpgradeItem;
+        upgradeBaseCost = BigDouble.Parse(upgradeItem.baseCost);
+        upgradeCostMultiplier = BigDouble.Parse(upgradeItem.baseCostMultiplier);
+        earnPower = BigDouble.Parse(upgradeItem.earnPower);
+        level = 1;
+        UpdateValueText();
     }
 }

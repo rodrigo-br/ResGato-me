@@ -27,17 +27,24 @@ public class CountersListener : MonoBehaviour
         if (isListeningTo == IsListeningTo.CatAmount)
         {
             format = null;
-            myPlayerStatus.OnCatChangeEvent.AddListener(OnUpdateText);
+            myPlayerStatus.OnCatChangeEvent += OnUpdateText;
         }
         else if (isListeningTo == IsListeningTo.CoinAmount)
         {
             format = "F2";
-            myPlayerStatus.OnCoinChangeEvent.AddListener(OnUpdateText);
+            myPlayerStatus.OnCoinChangeEvent += OnUpdateText;
         }
     }
 
-    void OnUpdateText(BigDouble value)
+    void OnUpdateText()
     {
-        myText.text = $"{value.ToString(format)}";
+        if (isListeningTo == IsListeningTo.CatAmount)
+        {
+            myText.text = $"{myPlayerStatus.GetCatAmount().ToString(format)}";
+        }
+        else if (isListeningTo == IsListeningTo.CoinAmount)
+        {
+            myText.text = $"{myPlayerStatus.GetCoinAmount().ToString(format)}";
+        }
     }
 }

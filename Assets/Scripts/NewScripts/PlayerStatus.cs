@@ -6,36 +6,30 @@ using BreakInfinity;
 
 public class PlayerStatus : MonoBehaviour
 {
-    [HideInInspector] public UnityEvent<BigDouble> OnCatChangeEvent;
-    [HideInInspector] public UnityEvent<BigDouble> OnCoinChangeEvent;
+    public delegate void CatChangeEvent();
+    public event CatChangeEvent OnCatChangeEvent;
+    public delegate void CoinChangeEvent();
+    public event CatChangeEvent OnCoinChangeEvent;
     BigDouble catAmount = 0;
     BigDouble coinAmount = 0;
     BigDouble earnCoinAmount = 1;
 
     void Start()
     {
-        if (OnCatChangeEvent == null)
-        {
-            OnCatChangeEvent = new UnityEvent<BigDouble>();
-        }
-        if (OnCoinChangeEvent == null)
-        {
-            OnCoinChangeEvent = new UnityEvent<BigDouble>();
-        }
-        OnCatChangeEvent.Invoke(catAmount);
-        OnCoinChangeEvent.Invoke(coinAmount);
+        OnCoinChangeEvent();
+        OnCatChangeEvent();
     }
 
     void ChangeCatAmount(BigDouble value)
     {
         catAmount += value;
-        OnCatChangeEvent.Invoke(catAmount);
+        OnCatChangeEvent();
     }
 
     void ChangeCoinAmount(BigDouble value)
     {
         coinAmount += value;
-        OnCoinChangeEvent.Invoke(coinAmount);
+        OnCoinChangeEvent();
     }
 
     public void PowerEarnings(BigDouble value) => earnCoinAmount += value;
@@ -45,4 +39,6 @@ public class PlayerStatus : MonoBehaviour
     public void EarnCoinOnClick() => ChangeCoinAmount(earnCoinAmount);
 
     public BigDouble GetCoinAmount() => coinAmount;
+
+    public BigDouble GetCatAmount() => catAmount;
 }
