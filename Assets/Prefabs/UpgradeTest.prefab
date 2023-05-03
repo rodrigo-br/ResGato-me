@@ -175,7 +175,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 1408, y: 186}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6172822958795629789
 CanvasRenderer:
@@ -205,7 +205,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 2123017293, guid: 8221c3e49a83a9c42a1bec03925eb219, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4e6039133cca47546aeabfa80f9b18d6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -273,7 +273,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   costText: {fileID: 6172822958252024108}
   powerText: {fileID: 6172822960129815682}
-  upgradeItem: {fileID: 0}
 --- !u!1 &6172822960129815692
 GameObject:
   m_ObjectHideFlags: 0

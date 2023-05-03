@@ -10,6 +10,8 @@ public class PlayerStatus : MonoBehaviour
     public event CatChangeEvent OnCatChangeEvent;
     public delegate void CoinChangeEvent();
     public event CatChangeEvent OnCoinChangeEvent;
+    public delegate void EarnCoinChangeEvent();
+    public event EarnCoinChangeEvent OnEarCoinChangeEvent;
     BigDouble catAmount = 0;
     BigDouble coinAmount = 0;
     BigDouble earnCoinAmount = 1;
@@ -18,6 +20,7 @@ public class PlayerStatus : MonoBehaviour
     {
         OnCoinChangeEvent();
         OnCatChangeEvent();
+        OnEarCoinChangeEvent();
     }
 
     void ChangeCatAmount(BigDouble value)
@@ -32,7 +35,11 @@ public class PlayerStatus : MonoBehaviour
         OnCoinChangeEvent();
     }
 
-    public void PowerEarnings(BigDouble value) => earnCoinAmount += value;
+    public void PowerEarnings(BigDouble value)
+    {
+        earnCoinAmount += value;
+        OnEarCoinChangeEvent();
+    }
 
     public void BuySomething(BigDouble value) => ChangeCoinAmount(-value);
 
@@ -41,4 +48,6 @@ public class PlayerStatus : MonoBehaviour
     public BigDouble GetCoinAmount() => coinAmount;
 
     public BigDouble GetCatAmount() => catAmount;
+
+    public BigDouble GetEarnCoinAmount() => earnCoinAmount;
 }

@@ -9,12 +9,12 @@ public class CountersListener : MonoBehaviour
     enum IsListeningTo
     {
         CatAmount,
-        CoinAmount
+        CoinAmount,
+        ClickPower
     }
     [SerializeField] IsListeningTo isListeningTo;
     TextMeshProUGUI myText;
     PlayerStatus myPlayerStatus;
-    string format;
 
     void Awake()
     {
@@ -26,13 +26,15 @@ public class CountersListener : MonoBehaviour
     {
         if (isListeningTo == IsListeningTo.CatAmount)
         {
-            format = null;
             myPlayerStatus.OnCatChangeEvent += OnUpdateText;
         }
         else if (isListeningTo == IsListeningTo.CoinAmount)
         {
-            format = "F2";
             myPlayerStatus.OnCoinChangeEvent += OnUpdateText;
+        }
+        else if (isListeningTo == IsListeningTo.ClickPower)
+        {
+            myPlayerStatus.OnEarCoinChangeEvent += OnUpdateText;
         }
     }
 
@@ -40,11 +42,15 @@ public class CountersListener : MonoBehaviour
     {
         if (isListeningTo == IsListeningTo.CatAmount)
         {
-            myText.text = $"{myPlayerStatus.GetCatAmount().ToString(format)}";
+            myText.text = $"{myPlayerStatus.GetCatAmount().Notate()}";
         }
         else if (isListeningTo == IsListeningTo.CoinAmount)
         {
-            myText.text = $"{myPlayerStatus.GetCoinAmount().ToString(format)}";
+            myText.text = $"{myPlayerStatus.GetCoinAmount().Notate()}";
+        }
+        else if (isListeningTo == IsListeningTo.ClickPower)
+        {
+            myText.text = $"Click Power\n+ ${myPlayerStatus.GetEarnCoinAmount().Notate()}";
         }
     }
 }

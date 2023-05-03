@@ -16,23 +16,13 @@ public class NewButtonsManager : MonoBehaviour
 
     void Awake()
     {
-        settingsButton.onClick.AddListener(OnSettingsButtonClick);
-        storeButton.onClick.AddListener(OnStoreButtonClick);
-        adoptButton.onClick.AddListener(OnAdoptButtonClick);
-        achivButton.onClick.AddListener(OnAchievButtonClick);
-        noAdsButton.onClick.AddListener(OnNoAdsButtonClick);
-        clickButton.onClick.AddListener(OnClickButtonClick);
+        settingsButton.onClick.AddListener(() => SelectCanvas("Settings"));
+        storeButton.onClick.AddListener(() => SelectCanvas("Store"));
+        adoptButton.onClick.AddListener(() => SelectCanvas("Adopt"));
+        achivButton.onClick.AddListener(() => SelectCanvas("Achiev"));
+        noAdsButton.onClick.AddListener(() => SelectCanvas("NoAds"));
+        clickButton.onClick.AddListener(() => myPlayerStatus.EarnCoinOnClick());
     }
-
-    void OnSettingsButtonClick() => SelectCanvas("Settings");
-
-    void OnStoreButtonClick() => SelectCanvas("Store");
-
-    void OnAdoptButtonClick() => SelectCanvas("Adopt");
-
-    void OnAchievButtonClick() => SelectCanvas("Achiev");
-
-    void OnNoAdsButtonClick() => SelectCanvas("NoAds");
 
     void SelectCanvas(string canvasTag)
     {
@@ -48,8 +38,6 @@ public class NewButtonsManager : MonoBehaviour
             }
         }
     }
-
-    void OnClickButtonClick() => myPlayerStatus.EarnCoinOnClick();
 
     public void SetUpgradeButtonClick(Button button)
     {

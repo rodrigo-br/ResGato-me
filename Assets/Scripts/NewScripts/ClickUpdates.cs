@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using BreakInfinity;
-using UnityEngine.UI;
 using TMPro;
 
 public class ClickUpdates : MonoBehaviour
@@ -15,10 +14,20 @@ public class ClickUpdates : MonoBehaviour
     BigDouble   earnPower;
     BigDouble   level;
 
+    public void SetUpgradeItem(UpgradeItem newUpgradeItem)
+    {
+        upgradeItem = newUpgradeItem;
+        upgradeBaseCost = BigDouble.Parse(upgradeItem.baseCost);
+        upgradeCostMultiplier = BigDouble.Parse(upgradeItem.baseCostMultiplier);
+        earnPower = BigDouble.Parse(upgradeItem.earnPower);
+        level = 1;
+        UpdateValueText();
+    }
+
     public void UpdateValueText()
     {
-        costText.text = $"Cost: {UpgradeCost().ToString("F2")}";
-        powerText.text = $"+{earnPower} Click Power";
+        costText.text = $"Cost: {UpgradeCost().Notate()}";
+        powerText.text = $"+{earnPower.Notate()} Click Power";
     }
 
     public void LevelUp() => level++;
@@ -28,15 +37,5 @@ public class ClickUpdates : MonoBehaviour
     public BigDouble UpgradeCost()
     {
         return (upgradeBaseCost * BigDouble.Pow(upgradeCostMultiplier, level));
-    }
-
-    public void SetUpgradeItem(UpgradeItem newUpgradeItem)
-    {
-        upgradeItem = newUpgradeItem;
-        upgradeBaseCost = BigDouble.Parse(upgradeItem.baseCost);
-        upgradeCostMultiplier = BigDouble.Parse(upgradeItem.baseCostMultiplier);
-        earnPower = BigDouble.Parse(upgradeItem.earnPower);
-        level = 1;
-        UpdateValueText();
     }
 }
