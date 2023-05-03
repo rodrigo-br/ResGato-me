@@ -8,6 +8,7 @@ public class ClickUpdates : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI costText;
     [SerializeField] TMP_Text powerText;
+    [SerializeField] TextMeshProUGUI levelText;
     UpgradeItem upgradeItem;
     BigDouble   upgradeBaseCost;
     BigDouble   upgradeCostMultiplier;
@@ -28,6 +29,7 @@ public class ClickUpdates : MonoBehaviour
     {
         costText.text = $"Cost: {UpgradeCost().Notate()}";
         powerText.text = $"+{earnPower.Notate()} Click Power";
+        levelText.text = "Level " + level;
     }
 
     public void LevelUp() => level++;

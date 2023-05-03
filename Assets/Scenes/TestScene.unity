@@ -242,7 +242,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &57534789
 RectTransform:
   m_ObjectHideFlags: 0
@@ -843,7 +843,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3458,7 +3458,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 1024, y: 576}
-  m_SizeDelta: {x: 1655, y: 805}
+  m_SizeDelta: {x: 1650, y: 800}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1423863324
 MonoBehaviour:
@@ -3767,7 +3767,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0.000061035156}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 230}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1518666094
 MonoBehaviour:
@@ -3784,13 +3784,13 @@ MonoBehaviour:
   m_Padding:
     m_Left: 121
     m_Right: 40
-    m_Top: 100
+    m_Top: 120
     m_Bottom: 150
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 1408, y: 186}
-  m_Spacing: {x: 0, y: 40}
+  m_Spacing: {x: 200, y: 40}
   m_Constraint: 1
   m_ConstraintCount: 1
 --- !u!222 &1518666096
@@ -3813,7 +3813,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85c06eda7c258024d83cc23b19f84021, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  updatesPrefab: {fileID: 6172822958795629778, guid: ed014dc4c834cb041b86b7c6427fe93d, type: 3}
+  updatesPrefab: {fileID: 4541370866483670165, guid: ed014dc4c834cb041b86b7c6427fe93d, type: 3}
 --- !u!114 &1518666098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5461,10 +5461,10 @@ RectTransform:
   m_Father: {fileID: 130844566}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.2, y: 0.2}
-  m_AnchorMax: {x: 0.8, y: 0.8}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.2, y: 0.15}
+  m_AnchorMax: {x: 0.2, y: 0.15}
+  m_AnchoredPosition: {x: 575.69, y: 410.05}
+  m_SizeDelta: {x: 1031.95, y: 820}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2096080688
 MonoBehaviour:
@@ -5503,14 +5503,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.8509804}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.9019608}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 121100867, guid: 8221c3e49a83a9c42a1bec03925eb219, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5266e8f7e6cc54e4d83b02dd1eb50f21, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

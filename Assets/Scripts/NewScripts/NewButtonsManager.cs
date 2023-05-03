@@ -46,7 +46,7 @@ public class NewButtonsManager : MonoBehaviour
 
     void OnUpgradeButtonClick(Button self)
     {
-        ClickUpdates myClickUpdates = self.GetComponent<ClickUpdates>();
+        ClickUpdates myClickUpdates = self.GetComponentInParent<ClickUpdates>();
         if (myPlayerStatus.GetCoinAmount() >= myClickUpdates.UpgradeCost())
         {
             myPlayerStatus.BuySomething(myClickUpdates.UpgradeCost());
