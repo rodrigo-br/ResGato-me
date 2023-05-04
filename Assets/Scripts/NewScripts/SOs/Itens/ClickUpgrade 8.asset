@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: ClickUpgrade 8
   m_EditorClassIdentifier: 
   id: 7
+  itemName: Abajour
   baseCostMultiplier: 4
   baseCost: 80
   earnPower: 20
+  image: {fileID: 21300000, guid: e8c9e8e6ec09f304bb0299a78ba4238a, type: 3}

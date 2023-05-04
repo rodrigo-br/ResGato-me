@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: ClickUpgrade 5
   m_EditorClassIdentifier: 
   id: 4
+  itemName: "Sof\xE1"
   baseCostMultiplier: 2
   baseCost: 50
   earnPower: 5
+  image: {fileID: 21300000, guid: 6c9b09c06eef268468bf7ec2658d2aa6, type: 3}

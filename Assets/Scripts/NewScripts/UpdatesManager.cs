@@ -23,7 +23,7 @@ public class UpdatesManager : MonoBehaviour
             var SOpath    = AssetDatabase.GUIDToAssetPath(SOName);
             var SOitem = AssetDatabase.LoadAssetAtPath<UpgradeItem>(SOpath);
             ClickUpdates instance = Instantiate<ClickUpdates>(updatesPrefab, transform);
-            myNewButtonsManager.SetUpgradeButtonClick(instance.GetComponentInChildren<Button>());
+            myNewButtonsManager.SetUpgradeButtonClick(instance);
             instance.SetUpgradeItem(SOitem);
         }
     }

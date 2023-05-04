@@ -2,17 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using BreakInfinity;
 
 public class NewButtonsManager : MonoBehaviour
 {
+    public delegate void XOptionClick();
+    public event XOptionClick OnXOptionClick;
     [SerializeField] Button settingsButton;
     [SerializeField] Button storeButton;
     [SerializeField] Button adoptButton;
     [SerializeField] Button achivButton;
     [SerializeField] Button noAdsButton;
     [SerializeField] Button clickButton;
+    [SerializeField] Button buy1X;
+    [SerializeField] Button buy10X;
+    [SerializeField] Button buyMAX;
     [SerializeField] PlayerStatus myPlayerStatus;
     [SerializeField] Canvas[] popUpCanvas;
+    public int buyXOption { get; private set; } = 1;
 
     void Awake()
     {
@@ -22,6 +29,9 @@ public class NewButtonsManager : MonoBehaviour
         achivButton.onClick.AddListener(() => SelectCanvas("Achiev"));
         noAdsButton.onClick.AddListener(() => SelectCanvas("NoAds"));
         clickButton.onClick.AddListener(() => myPlayerStatus.EarnCoinOnClick());
+        buy1X.onClick.AddListener(() => BuyXOptionClick(1));
+        buy10X.onClick.AddListener(() => BuyXOptionClick(10));
+        buyMAX.onClick.AddListener(() => BuyXOptionClick(-1));
     }
 
     void SelectCanvas(string canvasTag)
@@ -39,14 +49,14 @@ public class NewButtonsManager : MonoBehaviour
         }
     }
 
-    public void SetUpgradeButtonClick(Button button)
+    public void SetUpgradeButtonClick(ClickUpdates myClickUpdates)
     {
-        button.onClick.AddListener(() => OnUpgradeButtonClick(button));
+        Button button = myClickUpdates.GetComponentInChildren<Button>();
+        button.onClick.AddListener(() => OnUpgradeButtonClick(myClickUpdates));
     }
 
-    void OnUpgradeButtonClick(Button self)
+    void OnUpgradeButtonClick(ClickUpdates myClickUpdates)
     {
-        ClickUpdates myClickUpdates = self.GetComponentInParent<ClickUpdates>();
         if (myPlayerStatus.GetCoinAmount() >= myClickUpdates.UpgradeCost())
         {
             myPlayerStatus.BuySomething(myClickUpdates.UpgradeCost());
@@ -54,5 +64,16 @@ public class NewButtonsManager : MonoBehaviour
             myPlayerStatus.PowerEarnings(myClickUpdates.GetEarnPower());
         }
         myClickUpdates.UpdateValueText();
+    }
+
+    void BuyXOptionClick(int value)
+    {
+        buyXOption = value;
+        OnXOptionClick();
+    }
+
+    public BigDouble GetPlayerMoney()
+    {
+        return myPlayerStatus.GetCoinAmount();
     }
 }

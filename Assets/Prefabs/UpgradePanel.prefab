@@ -700,6 +700,8 @@ MonoBehaviour:
   costText: {fileID: 2342936604806185136}
   powerText: {fileID: 4721641650699688523}
   levelText: {fileID: 4268837135442010785}
+  nameText: {fileID: 6786758729837355013}
+  itemImage: {fileID: 997583082615900352}
 --- !u!1 &6320553303156684263
 GameObject:
   m_ObjectHideFlags: 0

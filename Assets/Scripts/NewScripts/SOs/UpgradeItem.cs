@@ -7,7 +7,9 @@ using UnityEngine.UI;
 public class UpgradeItem : ScriptableObject
 {
     public int      id;
+    public string   itemName;
     public string   baseCostMultiplier;
     public string   baseCost;
     public string   earnPower;
+    public Sprite   image;
 }

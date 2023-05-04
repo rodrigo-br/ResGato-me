@@ -68,7 +68,6 @@ public static class NotationsHandler
         {
             return number.ToDouble().ToString("N2");
         }
-
         string numberString = (number / BigDouble.Pow(10, 3 * BigDouble.Floor(number.exponent / 3))).ToString("F2");
         string abbreviationSTring = number.exponent < 306 ?
                                     StandardNotation[(int)((number.exponent - number.exponent % 3) / 3)] :
