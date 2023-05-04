@@ -58,8 +58,7 @@ public class ClickUpdates : MonoBehaviour
             }
             case 10:
             {
-                costText.text = $"Cost: {UpgradeCost().Notate()}";
-                powerText.text = $"+{(earnPower * 10).Notate()} Click Power";
+                Buy10();gi
                 break;
             }
             default:
@@ -95,5 +94,12 @@ public class ClickUpdates : MonoBehaviour
             costText.text = ":(";
             powerText.text = $"0 Click Power";
         }
+    }
+
+    void Buy10()
+    {
+        BigDouble cost = UpgradeCost() * ((BigDouble.Pow(upgradeCostMultiplier, 10) - 1) / (upgradeCostMultiplier - 1));
+        costText.text = $"Cost: {cost.Notate()}";
+        powerText.text = $"+{(earnPower * 10).Notate()} Click Power";
     }
 }

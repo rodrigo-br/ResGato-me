@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class UpdatesManager : MonoBehaviour
 {
     [SerializeField] ClickUpdates updatesPrefab;
+    [SerializeField] SOReferences sOReferences;
     NewButtonsManager myNewButtonsManager;
 
     void Awake()
@@ -16,15 +17,11 @@ public class UpdatesManager : MonoBehaviour
 
     void Start()
     {
-        string[] assetNames = AssetDatabase.FindAssets("", new[]{"Assets/Scripts/NewScripts/SOs/Itens"});
-
-        foreach (string SOName in assetNames)
+        foreach (UpgradeItem newUpgradeItem in sOReferences.soreferences)
         {
-            var SOpath    = AssetDatabase.GUIDToAssetPath(SOName);
-            var SOitem = AssetDatabase.LoadAssetAtPath<UpgradeItem>(SOpath);
             ClickUpdates instance = Instantiate<ClickUpdates>(updatesPrefab, transform);
             myNewButtonsManager.SetUpgradeButtonClick(instance);
-            instance.SetUpgradeItem(SOitem);
+            instance.SetUpgradeItem(newUpgradeItem);
         }
     }
 }
