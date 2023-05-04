@@ -58,7 +58,7 @@ public class ClickUpdates : MonoBehaviour
             }
             case 10:
             {
-                Buy10();gi
+                Buy10();
                 break;
             }
             default:
