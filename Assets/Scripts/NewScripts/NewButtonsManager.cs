@@ -57,12 +57,13 @@ public class NewButtonsManager : MonoBehaviour
 
     void OnUpgradeButtonClick(ClickUpdates myClickUpdates)
     {
-        int currentOption = buyXOption;
-        if (myPlayerStatus.GetCoinAmount() >= myClickUpdates.UpgradeCost(currentOption))
+        BigDouble correctCost = myClickUpdates.GetCorrectCost(buyXOption);
+        BigDouble correctLevel = myClickUpdates.GetCorrectLevel(buyXOption);
+        if (myPlayerStatus.GetCoinAmount() >= correctCost)
         {
-            myPlayerStatus.BuySomething(myClickUpdates.UpgradeCost(currentOption));
-            myClickUpdates.LevelUp();
-            myPlayerStatus.PowerEarnings(myClickUpdates.GetEarnPower());
+            myPlayerStatus.BuySomething(correctCost);
+            myClickUpdates.LevelUp(correctLevel);
+            myPlayerStatus.PowerEarnings(myClickUpdates.GetEarnPower(correctLevel), myClickUpdates.isProduction);
         }
         myClickUpdates.UpdateValueText();
     }

@@ -11,5 +11,6 @@ public class UpgradeItem : ScriptableObject
     public string   baseCostMultiplier;
     public string   baseCost;
     public string   earnPower;
+    public string   earnProduction;
     public Sprite   image;
 }

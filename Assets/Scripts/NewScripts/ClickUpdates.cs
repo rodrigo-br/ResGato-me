@@ -18,6 +18,8 @@ public class ClickUpdates : MonoBehaviour
     BigDouble   upgradeCostMultiplier;
     BigDouble   earnPower;
     BigDouble   level;
+    string      powerTypeText = "Click Power";
+    public bool isProduction { get; private set; } = false;
 
     void Awake()
     {
@@ -31,7 +33,16 @@ public class ClickUpdates : MonoBehaviour
         upgradeCostMultiplier = BigDouble.Parse(upgradeItem.baseCostMultiplier);
         itemImage.sprite = upgradeItem.image;
         nameText.text = upgradeItem.itemName;
-        earnPower = BigDouble.Parse(upgradeItem.earnPower);
+        if (upgradeItem.earnPower.Length > 0)
+        {
+            earnPower = BigDouble.Parse(upgradeItem.earnPower);
+        }
+        else
+        {
+            isProduction = true;
+            earnPower = BigDouble.Parse(upgradeItem.earnProduction);
+            powerTypeText = "/sec";
+        }
         level = 1;
         UpdateValueText();
     }
@@ -39,6 +50,8 @@ public class ClickUpdates : MonoBehaviour
     void OnEnable()
     {
         newButtonsManager.OnXOptionClick += UpdateValueText;
+        StopCoroutine(UpdateTextCoroutine());
+        StartCoroutine(UpdateTextCoroutine());
     }
 
     void OnDisable()
@@ -52,8 +65,8 @@ public class ClickUpdates : MonoBehaviour
         {
             case 1:
             {
-                costText.text = $"Cost: {UpgradeCost().Notate()}";
-                powerText.text = $"+{earnPower.Notate()} Click Power";
+                costText.text = $"Cost: {Get1Cost().Notate()}";
+                powerText.text = $"+{earnPower.Notate()} {powerTypeText}";
                 break;
             }
             case 10:
@@ -67,75 +80,88 @@ public class ClickUpdates : MonoBehaviour
                 break;
             }
         }
-        levelText.text = "Level " + level;
+        levelText.text = "Lvl " + level;
     }
 
-    public void LevelUp(double amount = 1)
+    public void LevelUp(BigDouble amount) => level += amount;
+
+    public BigDouble GetEarnPower(BigDouble amount) => earnPower * amount;
+
+    public BigDouble GetCorrectLevel(int XOption)
     {
-        BigDouble levelUpAmount;
-        switch (amount)
+        switch(XOption)
         {
             case 1:
-            {
-                levelUpAmount = 1;
-                break;
-            }
+                return 1;
             case 10:
-            {
-                levelUpAmount = 10;
-                break;
-            }
+                return 10;
             default:
-            {
-                BigDouble playerMoney = newButtonsManager.GetPlayerMoney();
-                BigDouble n = BigDouble.Floor(BigDouble.Log(playerMoney * (upgradeCostMultiplier - 1) / UpgradeCost() + 1, upgradeCostMultiplier));
-                levelUpAmount = n;
-                break;
-            }  
+                return GetMaxLevels();
         }
-        level += levelUpAmount;
     }
 
-    public BigDouble GetEarnPower(double amount = 1) => earnPower * amount;
-
-    public BigDouble UpgradeCost(double amount = 1)
+    public BigDouble GetCorrectCost(int XOption)
     {
-        switch (amount)
+        switch(XOption)
         {
             case 1:
-                return (upgradeBaseCost * BigDouble.Pow(upgradeCostMultiplier, level));
+                return Get1Cost();
             case 10:
-                return UpgradeCost() * ((BigDouble.Pow(upgradeCostMultiplier, 10) - 1) / (upgradeCostMultiplier - 1));
+                return Get10Cost();
             default:
-            {
-                BigDouble playerMoney = newButtonsManager.GetPlayerMoney();
-                BigDouble n = BigDouble.Floor(BigDouble.Log(playerMoney * (upgradeCostMultiplier - 1) / UpgradeCost() + 1, upgradeCostMultiplier));
-                return UpgradeCost() * ((BigDouble.Pow(upgradeCostMultiplier, n) - 1) / (upgradeCostMultiplier - 1));
-            }
+                return GetMaxCost();
         }
+    }
+
+    BigDouble GetMaxLevels()
+    {
+        BigDouble playerMoney = newButtonsManager.GetPlayerMoney();
+        return BigDouble.Floor(BigDouble.Log(playerMoney * (upgradeCostMultiplier - 1) / Get1Cost() + 1, upgradeCostMultiplier));
+    }
+
+    BigDouble GetMaxCost()
+    {
+        return Get1Cost() * ((BigDouble.Pow(upgradeCostMultiplier, GetMaxLevels()) - 1) / (upgradeCostMultiplier - 1));
+    }
+
+    BigDouble Get10Cost()
+    {
+        return Get1Cost() * ((BigDouble.Pow(upgradeCostMultiplier, 10) - 1) / (upgradeCostMultiplier - 1));
+    }
+
+    BigDouble Get1Cost()
+    {
+        return upgradeBaseCost * BigDouble.Pow(upgradeCostMultiplier, level);
     }
 
     void ShowPriceMax()
     {
-        BigDouble playerMoney = newButtonsManager.GetPlayerMoney();
-        BigDouble n = BigDouble.Floor(BigDouble.Log(playerMoney * (upgradeCostMultiplier - 1) / UpgradeCost() + 1, upgradeCostMultiplier));
-        BigDouble cost = UpgradeCost() * ((BigDouble.Pow(upgradeCostMultiplier, n) - 1) / (upgradeCostMultiplier - 1));
+        BigDouble n = GetMaxLevels();
         if (n > 0)
         {
-            costText.text = $"Cost: {cost.Notate()}";
-            powerText.text = $"+{(earnPower * n).Notate()} Click Power";
+            costText.text = $"Cost: {GetMaxCost().Notate()}";
+            powerText.text = $"+{(earnPower * n).Notate()} {powerTypeText}\n(+{n} levels)";
         }
         else
         {
             costText.text = ":(";
-            powerText.text = $"0 Click Power";
+            powerText.text = $"0 {powerTypeText}";
         }
     }
 
     void ShowPrice10()
     {
-        BigDouble cost = UpgradeCost() * ((BigDouble.Pow(upgradeCostMultiplier, 10) - 1) / (upgradeCostMultiplier - 1));
+        BigDouble cost = Get10Cost();
         costText.text = $"Cost: {cost.Notate()}";
-        powerText.text = $"+{(earnPower * 10).Notate()} Click Power";
+        powerText.text = $"+{(earnPower * 10).Notate()} {powerTypeText}";
+    }
+
+    IEnumerator UpdateTextCoroutine()
+    {
+        while (true)
+        {
+            UpdateValueText();
+            yield return new WaitForSecondsRealtime(0.6f);
+        }
     }
 }

@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2ddf893893659da45af5c3eeb6dc3a1a, type: 3}
-  m_Name: ClickUpgrade 1
+  m_Name: ClickUpgrade 10
   m_EditorClassIdentifier: 
-  id: 0
-  itemName: "Sof\xE1"
-  baseCostMultiplier: 1.5
-  baseCost: 10
-  earnPower: 0.25
-  earnProduction: 
-  image: {fileID: 21300000, guid: 6c9b09c06eef268468bf7ec2658d2aa6, type: 3}
+  id: 1
+  itemName: Abajour
+  baseCostMultiplier: 1.6
+  baseCost: 20
+  earnPower: 
+  earnProduction: 0.5
+  image: {fileID: 21300000, guid: e8c9e8e6ec09f304bb0299a78ba4238a, type: 3}

@@ -50,7 +50,7 @@ public class CountersListener : MonoBehaviour
         }
         else if (isListeningTo == IsListeningTo.ClickPower)
         {
-            myText.text = $"Click Power\n+ ${myPlayerStatus.GetEarnCoinAmount().Notate()}";
+            myText.text = $"Click Power\n+ ${myPlayerStatus.GetEarnCoinAmount().Notate()} \n+ {myPlayerStatus.GetProductionCoinAmount().Notate()} /sec";
         }
     }
 }
