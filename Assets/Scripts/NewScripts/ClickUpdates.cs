@@ -58,31 +58,67 @@ public class ClickUpdates : MonoBehaviour
             }
             case 10:
             {
-                Buy10();
+                ShowPrice10();
                 break;
             }
             default:
             {
-                BuyMax();
+                ShowPriceMax();
                 break;
             }
         }
         levelText.text = "Level " + level;
     }
 
-    public void LevelUp() => level++;
-
-    public BigDouble GetEarnPower() => earnPower;
-
-    public BigDouble UpgradeCost()
+    public void LevelUp(double amount = 1)
     {
-        return (upgradeBaseCost * BigDouble.Pow(upgradeCostMultiplier, level));
+        BigDouble levelUpAmount;
+        switch (amount)
+        {
+            case 1:
+            {
+                levelUpAmount = 1;
+                break;
+            }
+            case 10:
+            {
+                levelUpAmount = 10;
+                break;
+            }
+            default:
+            {
+                BigDouble playerMoney = newButtonsManager.GetPlayerMoney();
+                BigDouble n = BigDouble.Floor(BigDouble.Log(playerMoney * (upgradeCostMultiplier - 1) / UpgradeCost() + 1, upgradeCostMultiplier));
+                levelUpAmount = n;
+                break;
+            }  
+        }
+        level += levelUpAmount;
     }
 
-    void BuyMax()
+    public BigDouble GetEarnPower(double amount = 1) => earnPower * amount;
+
+    public BigDouble UpgradeCost(double amount = 1)
+    {
+        switch (amount)
+        {
+            case 1:
+                return (upgradeBaseCost * BigDouble.Pow(upgradeCostMultiplier, level));
+            case 10:
+                return UpgradeCost() * ((BigDouble.Pow(upgradeCostMultiplier, 10) - 1) / (upgradeCostMultiplier - 1));
+            default:
+            {
+                BigDouble playerMoney = newButtonsManager.GetPlayerMoney();
+                BigDouble n = BigDouble.Floor(BigDouble.Log(playerMoney * (upgradeCostMultiplier - 1) / UpgradeCost() + 1, upgradeCostMultiplier));
+                return UpgradeCost() * ((BigDouble.Pow(upgradeCostMultiplier, n) - 1) / (upgradeCostMultiplier - 1));
+            }
+        }
+    }
+
+    void ShowPriceMax()
     {
         BigDouble playerMoney = newButtonsManager.GetPlayerMoney();
-        BigDouble n = BigDouble.Floor((BigDouble)BigDouble.Log(playerMoney * (upgradeCostMultiplier - 1) / UpgradeCost() + 1, upgradeCostMultiplier));
+        BigDouble n = BigDouble.Floor(BigDouble.Log(playerMoney * (upgradeCostMultiplier - 1) / UpgradeCost() + 1, upgradeCostMultiplier));
         BigDouble cost = UpgradeCost() * ((BigDouble.Pow(upgradeCostMultiplier, n) - 1) / (upgradeCostMultiplier - 1));
         if (n > 0)
         {
@@ -96,7 +132,7 @@ public class ClickUpdates : MonoBehaviour
         }
     }
 
-    void Buy10()
+    void ShowPrice10()
     {
         BigDouble cost = UpgradeCost() * ((BigDouble.Pow(upgradeCostMultiplier, 10) - 1) / (upgradeCostMultiplier - 1));
         costText.text = $"Cost: {cost.Notate()}";

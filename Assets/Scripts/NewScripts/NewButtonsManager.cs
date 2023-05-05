@@ -14,9 +14,9 @@ public class NewButtonsManager : MonoBehaviour
     [SerializeField] Button achivButton;
     [SerializeField] Button noAdsButton;
     [SerializeField] Button clickButton;
-    [SerializeField] Button buy1X;
-    [SerializeField] Button buy10X;
-    [SerializeField] Button buyMAX;
+    [SerializeField] Toggle buy1X;
+    [SerializeField] Toggle buy10X;
+    [SerializeField] Toggle buyMAX;
     [SerializeField] PlayerStatus myPlayerStatus;
     [SerializeField] Canvas[] popUpCanvas;
     public int buyXOption { get; private set; } = 1;
@@ -29,9 +29,9 @@ public class NewButtonsManager : MonoBehaviour
         achivButton.onClick.AddListener(() => SelectCanvas("Achiev"));
         noAdsButton.onClick.AddListener(() => SelectCanvas("NoAds"));
         clickButton.onClick.AddListener(() => myPlayerStatus.EarnCoinOnClick());
-        buy1X.onClick.AddListener(() => BuyXOptionClick(1));
-        buy10X.onClick.AddListener(() => BuyXOptionClick(10));
-        buyMAX.onClick.AddListener(() => BuyXOptionClick(-1));
+        buy1X.onValueChanged.AddListener(delegate { BuyXOptionClick(1); });
+        buy10X.onValueChanged.AddListener(delegate { BuyXOptionClick(10); });
+        buyMAX.onValueChanged.AddListener(delegate { BuyXOptionClick(-1); });
     }
 
     void SelectCanvas(string canvasTag)
@@ -57,9 +57,10 @@ public class NewButtonsManager : MonoBehaviour
 
     void OnUpgradeButtonClick(ClickUpdates myClickUpdates)
     {
-        if (myPlayerStatus.GetCoinAmount() >= myClickUpdates.UpgradeCost())
+        int currentOption = buyXOption;
+        if (myPlayerStatus.GetCoinAmount() >= myClickUpdates.UpgradeCost(currentOption))
         {
-            myPlayerStatus.BuySomething(myClickUpdates.UpgradeCost());
+            myPlayerStatus.BuySomething(myClickUpdates.UpgradeCost(currentOption));
             myClickUpdates.LevelUp();
             myPlayerStatus.PowerEarnings(myClickUpdates.GetEarnPower());
         }
