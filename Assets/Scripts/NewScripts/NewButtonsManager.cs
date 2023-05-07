@@ -19,6 +19,7 @@ public class NewButtonsManager : MonoBehaviour
     [SerializeField] Toggle buyMAX;
     [SerializeField] PlayerStatus myPlayerStatus;
     [SerializeField] Canvas[] popUpCanvas;
+    List<ClickUpdates> myClickUpdatesList;
     public int buyXOption { get; private set; } = 1;
 
     void Awake()
@@ -32,6 +33,35 @@ public class NewButtonsManager : MonoBehaviour
         buy1X.onValueChanged.AddListener(delegate { BuyXOptionClick(1); });
         buy10X.onValueChanged.AddListener(delegate { BuyXOptionClick(10); });
         buyMAX.onValueChanged.AddListener(delegate { BuyXOptionClick(-1); });
+        myClickUpdatesList = new List<ClickUpdates>();
+    }
+
+    void OnEnable()
+    {
+        myPlayerStatus.OnCatChangeEvent += CheckUnlocksUpdates;
+    }
+
+    void CheckUnlocksUpdates()
+    {
+        List<ClickUpdates> toRemove = new List<ClickUpdates>();
+        double catAmount = myPlayerStatus.catAmount.ToDouble();
+        if (myClickUpdatesList.Count <= 0)
+        {
+            return ;
+        }
+        foreach (ClickUpdates clickupdate in myClickUpdatesList)
+        {
+            if (catAmount >= clickupdate.unblockValue)
+            {
+                clickupdate.GetComponentInChildren<Button>().interactable = true;
+                clickupdate.UnblockImage();
+                toRemove.Add(clickupdate);
+            }
+        }
+        foreach (ClickUpdates clickupdate in toRemove)
+        {
+            myClickUpdatesList.Remove(clickupdate);
+        }
     }
 
     void SelectCanvas(string canvasTag)
@@ -53,6 +83,12 @@ public class NewButtonsManager : MonoBehaviour
     {
         Button button = myClickUpdates.GetComponentInChildren<Button>();
         button.onClick.AddListener(() => OnUpgradeButtonClick(myClickUpdates));
+        if (myPlayerStatus.catAmount.ToDouble() >= myClickUpdates.unblockValue)
+        {
+            button.interactable = true;
+            myClickUpdates.UnblockImage();
+        }
+        myClickUpdatesList.Add(myClickUpdates);
     }
 
     void OnUpgradeButtonClick(ClickUpdates myClickUpdates)

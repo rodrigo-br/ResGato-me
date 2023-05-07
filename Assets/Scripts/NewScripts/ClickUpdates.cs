@@ -12,12 +12,14 @@ public class ClickUpdates : MonoBehaviour
     [SerializeField] TextMeshProUGUI levelText;
     [SerializeField] TextMeshProUGUI nameText;
     [SerializeField] Image itemImage;
+    [SerializeField] Image blockImage;
     NewButtonsManager newButtonsManager;
     UpgradeItem upgradeItem;
     BigDouble   upgradeBaseCost;
     BigDouble   upgradeCostMultiplier;
     BigDouble   earnPower;
     BigDouble   level;
+    public double unblockValue { get; private set; }
     string      powerTypeText = "Click Power";
     public bool isProduction { get; private set; } = false;
 
@@ -44,6 +46,7 @@ public class ClickUpdates : MonoBehaviour
             powerTypeText = "/sec";
         }
         level = 1;
+        unblockValue = upgradeItem.unblockValue;
         UpdateValueText();
     }
 
@@ -163,5 +166,15 @@ public class ClickUpdates : MonoBehaviour
             UpdateValueText();
             yield return new WaitForSecondsRealtime(0.6f);
         }
+    }
+
+    public void BlockImage()
+    {
+        blockImage.gameObject.SetActive(true);
+    }
+
+    public void UnblockImage()
+    {
+        blockImage.gameObject.SetActive(false);
     }
 }

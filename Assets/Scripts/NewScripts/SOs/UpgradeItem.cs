@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "newUpgradeItem", menuName = "Upgrade Item SO")]
 public class UpgradeItem : ScriptableObject
@@ -13,4 +12,5 @@ public class UpgradeItem : ScriptableObject
     public string   earnPower;
     public string   earnProduction;
     public Sprite   image;
+    public double   unblockValue;
 }

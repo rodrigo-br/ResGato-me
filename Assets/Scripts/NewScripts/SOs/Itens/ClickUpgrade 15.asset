@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ddf893893659da45af5c3eeb6dc3a1a, type: 3}
   m_Name: ClickUpgrade 15
   m_EditorClassIdentifier: 
-  id: 6
+  id: 7
   itemName: "Sof\xE1"
   baseCostMultiplier: 3
   baseCost: 70
   earnPower: 
   earnProduction: 15
   image: {fileID: 21300000, guid: 6c9b09c06eef268468bf7ec2658d2aa6, type: 3}
+  unblockValue: 7

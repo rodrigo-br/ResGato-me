@@ -9,12 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ddf893893659da45af5c3eeb6dc3a1a, type: 3}
-  m_Name: ClickUpgrade 2
+  m_Script: {fileID: 11500000, guid: a093a78eae24e5648871b3a5b1408c68, type: 3}
+  m_Name: Rare Cat 1
   m_EditorClassIdentifier: 
-  id: 1
-  itemName: Abajour
-  baseCostMultiplier: 1.6
-  baseCost: 20
-  earnPower: 0.5
-  image: {fileID: 21300000, guid: e8c9e8e6ec09f304bb0299a78ba4238a, type: 3}
+  catName: 
+  catImage: {fileID: 0}
+  deltaCatAmount: 0

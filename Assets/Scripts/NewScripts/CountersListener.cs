@@ -42,7 +42,7 @@ public class CountersListener : MonoBehaviour
     {
         if (isListeningTo == IsListeningTo.CatAmount)
         {
-            myText.text = $"{myPlayerStatus.GetCatAmount().Notate()}";
+            myText.text = $"{myPlayerStatus.catAmount.Notate()}";
         }
         else if (isListeningTo == IsListeningTo.CoinAmount)
         {

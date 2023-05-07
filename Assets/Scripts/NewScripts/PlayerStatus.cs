@@ -12,7 +12,7 @@ public class PlayerStatus : MonoBehaviour
     public event CatChangeEvent OnCoinChangeEvent;
     public delegate void EarnCoinChangeEvent();
     public event EarnCoinChangeEvent OnEarCoinChangeEvent;
-    BigDouble catAmount = 0;
+    public BigDouble catAmount {get; private set; } = 0;
     BigDouble coinAmount = 0;
     BigDouble earnCoinAmount = 1;
     BigDouble productionCoinAmount = 0;
@@ -23,6 +23,14 @@ public class PlayerStatus : MonoBehaviour
         OnCatChangeEvent();
         OnEarCoinChangeEvent();
         StartCoroutine(ProduceCoinCoroutine());
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown("k"))
+        {
+            ChangeCatAmount(1);
+        }
     }
 
     void ChangeCatAmount(BigDouble value)
@@ -55,8 +63,6 @@ public class PlayerStatus : MonoBehaviour
     public void EarnCoinOnClick() => ChangeCoinAmount(earnCoinAmount);
 
     public BigDouble GetCoinAmount() => coinAmount;
-
-    public BigDouble GetCatAmount() => catAmount;
 
     public BigDouble GetEarnCoinAmount() => earnCoinAmount;
 

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class BuyXToggleHandler : MonoBehaviour
 {
-    [SerializeField] Color color;
+    [SerializeField] Color selectedColor;
     Toggle  myToggle;
     Image   myImage;   
     void Awake()
@@ -18,7 +18,7 @@ public class BuyXToggleHandler : MonoBehaviour
     {
         if (myToggle.isOn)
         {
-            myImage.color = color;
+            myImage.color = selectedColor;
         }
         myToggle.onValueChanged.AddListener(delegate { ChooseColors(); });
     }
@@ -27,7 +27,7 @@ public class BuyXToggleHandler : MonoBehaviour
     {
         if (myToggle.isOn)
         {
-            myImage.color = color;
+            myImage.color = selectedColor;
         }
         else
         {

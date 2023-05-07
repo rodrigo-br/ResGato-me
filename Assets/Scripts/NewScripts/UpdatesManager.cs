@@ -18,8 +18,8 @@ public class UpdatesManager : MonoBehaviour
         foreach (UpgradeItem newUpgradeItem in sOReferences.soreferences)
         {
             ClickUpdates instance = Instantiate<ClickUpdates>(updatesPrefab, transform);
-            myNewButtonsManager.SetUpgradeButtonClick(instance);
             instance.SetUpgradeItem(newUpgradeItem);
+            myNewButtonsManager.SetUpgradeButtonClick(instance);
         }
     }
 }
