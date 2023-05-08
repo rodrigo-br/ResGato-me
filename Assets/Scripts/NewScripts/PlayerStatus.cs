@@ -62,6 +62,8 @@ public class PlayerStatus : MonoBehaviour
 
     public void EarnCoinOnClick() => ChangeCoinAmount(earnCoinAmount);
 
+    public void EarnCat(double amount) => ChangeCatAmount(amount);
+
     public BigDouble GetCoinAmount() => coinAmount;
 
     public BigDouble GetEarnCoinAmount() => earnCoinAmount;

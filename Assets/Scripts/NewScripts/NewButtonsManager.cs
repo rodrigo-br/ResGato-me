@@ -8,16 +8,20 @@ public class NewButtonsManager : MonoBehaviour
 {
     public delegate void XOptionClick();
     public event XOptionClick OnXOptionClick;
+    public delegate void CatOfferSelect();
+    public event CatOfferSelect OnCatOfferSelect;
     [SerializeField] Button settingsButton;
     [SerializeField] Button storeButton;
     [SerializeField] Button adoptButton;
     [SerializeField] Button achivButton;
     [SerializeField] Button noAdsButton;
     [SerializeField] Button clickButton;
+    [SerializeField] Button generateCatalogueButton;
     [SerializeField] Toggle buy1X;
     [SerializeField] Toggle buy10X;
     [SerializeField] Toggle buyMAX;
     [SerializeField] PlayerStatus myPlayerStatus;
+    [SerializeField] CatalogueManager myCatalogueManager;
     [SerializeField] Canvas[] popUpCanvas;
     List<ClickUpdates> myClickUpdatesList;
     public int buyXOption { get; private set; } = 1;
@@ -33,6 +37,7 @@ public class NewButtonsManager : MonoBehaviour
         buy1X.onValueChanged.AddListener(delegate { BuyXOptionClick(1); });
         buy10X.onValueChanged.AddListener(delegate { BuyXOptionClick(10); });
         buyMAX.onValueChanged.AddListener(delegate { BuyXOptionClick(-1); });
+        generateCatalogueButton.onClick.AddListener(() => myCatalogueManager.GenerateCatalogue());
         myClickUpdatesList = new List<ClickUpdates>();
     }
 
@@ -114,4 +119,18 @@ public class NewButtonsManager : MonoBehaviour
     {
         return myPlayerStatus.GetCoinAmount();
     }
+
+    public void SetCatOfferButton(Button button, double deltaCatAmount)
+    {
+        button.onClick.AddListener(() => PickCatAmount(deltaCatAmount));
+    }
+
+    void PickCatAmount(double amount)
+    {
+        myPlayerStatus.EarnCat(amount);
+        if (OnCatOfferSelect != null)
+        {
+            OnCatOfferSelect();
+        }
+    }    
 }

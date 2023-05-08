@@ -15,4 +15,6 @@ public class CatOffer : MonoBehaviour
     public TextMeshProUGUI GetDeltaLevel() => deltaLevel;
 
     public TextMeshProUGUI GetInfos() => infos;
+
+    public Button GetCatOfferButton() => catImage.gameObject.GetComponent<Button>();
 }

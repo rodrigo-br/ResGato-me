@@ -11,6 +11,7 @@ public class CatalogueManager : MonoBehaviour
     [SerializeField] CatsSO[] rareCats;
     List<CatsSO> catalogueList;
     List<CatsSO> resultList;
+    int reloadCatalogue = 2;
 
     void Start()
     {
@@ -21,19 +22,12 @@ public class CatalogueManager : MonoBehaviour
             catalogueList.Add(rareCats[Random.Range(0, rareCats.Length)]);
         for (int i = 0; i < 90; i++)
             catalogueList.Add(ordinaryCats[Random.Range(0, ordinaryCats.Length)]);
+        GenerateCatalogue();
     }
 
-    void Update()
+    public void GenerateCatalogue()
     {
-        if (Input.GetKeyDown("l"))
-        {
-            GenerateCatalogue();
-        }
-    }
-
-    void GenerateCatalogue()
-    {
-        if (catalogueList.Count < 4)
+        if (catalogueList.Count < 4 || reloadCatalogue <= 0)
         {
             return ;
         }
@@ -52,6 +46,7 @@ public class CatalogueManager : MonoBehaviour
                 {
                     OnCatalogueGenerated();
                 }
+                reloadCatalogue--;
             }
         }
     }
@@ -59,5 +54,10 @@ public class CatalogueManager : MonoBehaviour
     public List<CatsSO> GetResultList()
     {
         return resultList;
-    } 
+    }
+
+    void IncreaseReloads(int value)
+    {
+        reloadCatalogue += value;
+    }
 }
