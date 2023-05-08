@@ -9093,7 +9093,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28e45790357583e42a0328be64c12524, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soreferences:
+  _soreferences:
   - {fileID: 11400000, guid: 40ffa219c93be6c44b137185dcb6bfb8, type: 2}
   - {fileID: 11400000, guid: 2ca8c2a0618b6c34b8eb3ec79a134556, type: 2}
   - {fileID: 11400000, guid: a7db622a9348c9a4880b5a6dd2d02aae, type: 2}

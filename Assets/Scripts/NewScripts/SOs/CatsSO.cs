@@ -5,7 +5,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewCatSO", menuName = "CatsSO")]
 public class CatsSO : ScriptableObject
 {
-    public string catName;
-    public Sprite catImage;
-    public double deltaCatAmount;
+    [SerializeField] string _catName;
+    [SerializeField] Sprite _catImage;
+    [SerializeField] double _deltaCatAmount;
+    public string catName => _catName;
+    public Sprite catImage => _catImage;
+    public double deltaCatAmount => _deltaCatAmount;
 }

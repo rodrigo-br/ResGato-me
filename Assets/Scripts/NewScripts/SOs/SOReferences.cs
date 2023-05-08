@@ -4,5 +4,7 @@ using UnityEngine;
 
 public class SOReferences : MonoBehaviour
 {
-    public UpgradeItem[] soreferences;
+    [SerializeField] UpgradeItem[] _soreferences;
+
+    public UpgradeItem[] soreferences => _soreferences;
 }
