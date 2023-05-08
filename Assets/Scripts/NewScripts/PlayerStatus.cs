@@ -19,9 +19,9 @@ public class PlayerStatus : MonoBehaviour
 
     void Start()
     {
-        OnCoinChangeEvent();
-        OnCatChangeEvent();
-        OnEarCoinChangeEvent();
+        OnCoinChangeEvent?.Invoke();
+        OnCatChangeEvent?.Invoke();
+        OnEarCoinChangeEvent?.Invoke();
         StartCoroutine(ProduceCoinCoroutine());
     }
 
@@ -36,13 +36,13 @@ public class PlayerStatus : MonoBehaviour
     void ChangeCatAmount(BigDouble value)
     {
         catAmount += value;
-        OnCatChangeEvent();
+        OnCatChangeEvent?.Invoke();
     }
 
     void ChangeCoinAmount(BigDouble value)
     {
         coinAmount += value;
-        OnCoinChangeEvent();
+        OnCoinChangeEvent?.Invoke();
     }
 
     public void PowerEarnings(BigDouble value, bool isProduction)
@@ -55,7 +55,7 @@ public class PlayerStatus : MonoBehaviour
         {
             productionCoinAmount += value;
         }
-        OnEarCoinChangeEvent();
+        OnEarCoinChangeEvent?.Invoke();
     }
 
     public void BuySomething(BigDouble value) => ChangeCoinAmount(-value);
@@ -75,7 +75,7 @@ public class PlayerStatus : MonoBehaviour
         while (true)
         {
             coinAmount += productionCoinAmount;
-            OnCoinChangeEvent();
+            OnCoinChangeEvent?.Invoke();
             yield return new WaitForSecondsRealtime(1f);
         }
     }

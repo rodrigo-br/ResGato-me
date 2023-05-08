@@ -42,10 +42,7 @@ public class CatalogueManager : MonoBehaviour
             catalogueList.RemoveAt(index);
             if (resultList.Count == 4)
             {
-                if (OnCatalogueGenerated != null)
-                {
-                    OnCatalogueGenerated();
-                }
+                OnCatalogueGenerated?.Invoke();
                 reloadCatalogue--;
             }
         }

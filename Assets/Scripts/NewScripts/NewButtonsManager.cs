@@ -112,7 +112,7 @@ public class NewButtonsManager : MonoBehaviour
     void BuyXOptionClick(int value)
     {
         buyXOption = value;
-        OnXOptionClick();
+        OnXOptionClick?.Invoke();
     }
 
     public BigDouble GetPlayerMoney()
@@ -128,9 +128,6 @@ public class NewButtonsManager : MonoBehaviour
     void PickCatAmount(double amount)
     {
         myPlayerStatus.EarnCat(amount);
-        if (OnCatOfferSelect != null)
-        {
-            OnCatOfferSelect();
-        }
+        OnCatOfferSelect?.Invoke();
     }    
 }
