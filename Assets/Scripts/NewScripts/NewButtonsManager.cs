@@ -46,6 +46,11 @@ public class NewButtonsManager : MonoBehaviour
         myPlayerStatus.OnCatChangeEvent += CheckUnlocksUpdates;
     }
 
+    void OnDisable()
+    {
+        myPlayerStatus.OnCatChangeEvent -= CheckUnlocksUpdates;
+    }
+
     void CheckUnlocksUpdates()
     {
         List<ClickUpdates> toRemove = new List<ClickUpdates>();

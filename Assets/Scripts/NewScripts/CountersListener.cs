@@ -38,6 +38,22 @@ public class CountersListener : MonoBehaviour
         }
     }
 
+    void OnDisable()
+    {
+        if (isListeningTo == IsListeningTo.CatAmount)
+        {
+            myPlayerStatus.OnCatChangeEvent -= OnUpdateText;
+        }
+        else if (isListeningTo == IsListeningTo.CoinAmount)
+        {
+            myPlayerStatus.OnCoinChangeEvent -= OnUpdateText;
+        }
+        else if (isListeningTo == IsListeningTo.ClickPower)
+        {
+            myPlayerStatus.OnEarCoinChangeEvent -= OnUpdateText;
+        }
+    }
+
     void OnUpdateText()
     {
         if (isListeningTo == IsListeningTo.CatAmount)

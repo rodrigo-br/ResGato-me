@@ -4,9 +4,11 @@ using UnityEngine;
 using BreakInfinity;
 using TMPro;
 using UnityEngine.UI;
+using System;
 
 public class ClickUpdates : MonoBehaviour
 {
+    public event EventHandler<EventHandlerClasses> OnLevelChanged;
     [SerializeField] TextMeshProUGUI costText;
     [SerializeField] TMP_Text powerText;
     [SerializeField] TextMeshProUGUI levelText;
@@ -19,9 +21,24 @@ public class ClickUpdates : MonoBehaviour
     BigDouble   upgradeCostMultiplier;
     BigDouble   earnPower;
     BigDouble   level;
+    int id;
     public double unblockValue { get; private set; }
     string      powerTypeText = "Click Power";
     public bool isProduction { get; private set; } = false;
+
+    public int Id => id;
+    public BigDouble Level
+    {
+        get => level;
+        private set
+        {
+            level = value;
+            OnLevelChanged?.Invoke(this, new EventHandlerClasses {
+                Id = id,
+                Level = level
+                });
+        }
+    }
 
     void Awake()
     {
@@ -45,8 +62,9 @@ public class ClickUpdates : MonoBehaviour
             earnPower = BigDouble.Parse(upgradeItem.earnProduction);
             powerTypeText = "/sec";
         }
-        level = 1;
+        level = 0;
         unblockValue = upgradeItem.unblockValue;
+        id = upgradeItem.id;
         UpdateValueText();
     }
 
@@ -86,7 +104,7 @@ public class ClickUpdates : MonoBehaviour
         levelText.text = "Lvl " + level;
     }
 
-    public void LevelUp(BigDouble amount) => level += amount;
+    public void LevelUp(BigDouble amount) => Level += amount;
 
     public BigDouble GetEarnPower(BigDouble amount) => earnPower * amount;
 

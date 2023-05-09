@@ -1436,6 +1436,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   catOfferPrefab: {fileID: 4841027637513082610, guid: 26b1f6f16b89a2049af81c0b1b4beed6, type: 3}
+  myUpdatesManager: {fileID: 1518666097}
 --- !u!1 &274290842
 GameObject:
   m_ObjectHideFlags: 0

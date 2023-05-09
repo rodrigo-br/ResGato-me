@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class AdoptPanelMananger : MonoBehaviour
 {
     [SerializeField] CatOffer catOfferPrefab;
+    [SerializeField] UpdatesManager myUpdatesManager;
     CatalogueManager myCatalogueManager;
     NewButtonsManager myNewButtonsManager;
     List<CatsSO> catsList;
-    bool isAdopting = true;
+    public bool isAdopting { get; private set; } = true;
+    double isTracking = 0;
 
     void Awake()
     {
@@ -23,6 +26,11 @@ public class AdoptPanelMananger : MonoBehaviour
 
     void OnEnable()
     {
+        if (myUpdatesManager.idTracking > isTracking)
+        {
+            isTracking++;
+            SetIsAdopting(true);
+        }
         myCatalogueManager.OnCatalogueGenerated += InstantiateList;
         myNewButtonsManager.OnCatOfferSelect += () => SetIsAdopting(false);
     }
