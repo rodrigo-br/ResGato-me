@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: OrdinaryCat 1
   m_EditorClassIdentifier: 
   _catName: Rodolfo
-  _catImage: {fileID: 21300000, guid: 0faad2748eb996f44a6bb9d2cb65f841, type: 3}
+  _catImage: {fileID: 21300000, guid: 1d9d3067b2d00b54f91969b0b8885ac0, type: 3}
   _deltaCatAmount: 1

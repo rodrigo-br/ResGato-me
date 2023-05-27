@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: ClickUpgrade 11
   m_EditorClassIdentifier: 
   _id: 3
-  _itemName: "Sof\xE1"
+  _itemName: "Pote de ra\xE7\xE3o"
   _baseCostMultiplier: 1.7
   _baseCost: 60
   _earnPower: 
-  _earnProduction: 1
-  _image: {fileID: 21300000, guid: 6c9b09c06eef268468bf7ec2658d2aa6, type: 3}
-  _unblockValue: 3
+  _earnProduction: 50
+  _image: {fileID: 21300000, guid: 5087a04499ba6294dbbe87722ce07dfb, type: 3}
+  _unblockValue: 4

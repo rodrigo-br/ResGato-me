@@ -17,6 +17,6 @@ MonoBehaviour:
   _baseCostMultiplier: 2.6
   _baseCost: 500
   _earnPower: 
-  _earnProduction: 5
+  _earnProduction: 15000
   _image: {fileID: 21300000, guid: 6c9b09c06eef268468bf7ec2658d2aa6, type: 3}
-  _unblockValue: 7
+  _unblockValue: 8

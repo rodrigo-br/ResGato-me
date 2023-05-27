@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: MvP Cat 1
   m_EditorClassIdentifier: 
   _catName: Churrosmilho
-  _catImage: {fileID: 21300000, guid: 0faad2748eb996f44a6bb9d2cb65f841, type: 3}
+  _catImage: {fileID: 21300000, guid: 6beab6a6cca32114c80e6460645269dd, type: 3}
   _deltaCatAmount: 20

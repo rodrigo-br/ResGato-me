@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: ClickUpgrade 10
   m_EditorClassIdentifier: 
   _id: 2
-  _itemName: Abajur
+  _itemName: "P\xE1 de areia"
   _baseCostMultiplier: 1.6
   _baseCost: 30
   _earnPower: 
-  _earnProduction: 0.5
-  _image: {fileID: 21300000, guid: e8c9e8e6ec09f304bb0299a78ba4238a, type: 3}
-  _unblockValue: 2
+  _earnProduction: 20
+  _image: {fileID: 21300000, guid: 24b99891ab5a2644c8a104165c32023f, type: 3}
+  _unblockValue: 3

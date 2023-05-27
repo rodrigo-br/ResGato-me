@@ -10,6 +10,8 @@ public class NewButtonsManager : MonoBehaviour
     public event XOptionClick OnXOptionClick;
     public delegate void CatOfferSelect();
     public event CatOfferSelect OnCatOfferSelect;
+    public delegate void ClickedButtonEarnMoney();
+    public ClickedButtonEarnMoney OnClickedButtonEarnMoney;
     [SerializeField] Button settingsButton;
     [SerializeField] Button storeButton;
     [SerializeField] Button adoptButton;
@@ -34,6 +36,7 @@ public class NewButtonsManager : MonoBehaviour
         achivButton.onClick.AddListener(() => SelectCanvas("Achiev"));
         noAdsButton.onClick.AddListener(() => SelectCanvas("NoAds"));
         clickButton.onClick.AddListener(() => myPlayerStatus.EarnCoinOnClick());
+        clickButton.onClick.AddListener(() => OnClickedButtonEarnMoney());
         buy1X.onValueChanged.AddListener(delegate { BuyXOptionClick(1); });
         buy10X.onValueChanged.AddListener(delegate { BuyXOptionClick(10); });
         buyMAX.onValueChanged.AddListener(delegate { BuyXOptionClick(-1); });
@@ -49,6 +52,11 @@ public class NewButtonsManager : MonoBehaviour
     void OnDisable()
     {
         myPlayerStatus.OnCatChangeEvent -= CheckUnlocksUpdates;
+    }
+
+    void SetClickButton()
+    {
+
     }
 
     void CheckUnlocksUpdates()
@@ -76,6 +84,7 @@ public class NewButtonsManager : MonoBehaviour
 
     void SelectCanvas(string canvasTag)
     {
+        OnClickedButtonEarnMoney();
         foreach (Canvas canvas in popUpCanvas)
         {
             if (canvas.CompareTag(canvasTag))
@@ -116,6 +125,7 @@ public class NewButtonsManager : MonoBehaviour
 
     void BuyXOptionClick(int value)
     {
+        OnClickedButtonEarnMoney();
         buyXOption = value;
         OnXOptionClick?.Invoke();
     }

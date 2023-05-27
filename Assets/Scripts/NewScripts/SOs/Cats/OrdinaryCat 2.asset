@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: OrdinaryCat 2
   m_EditorClassIdentifier: 
   _catName: "P\xE9ricles"
-  _catImage: {fileID: 21300000, guid: 0faad2748eb996f44a6bb9d2cb65f841, type: 3}
+  _catImage: {fileID: 21300000, guid: d5175244e498dc54ea3d79ec9f8aa64e, type: 3}
   _deltaCatAmount: 2
